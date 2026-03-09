@@ -54,7 +54,7 @@ The following videos demonstrate the implementation and execution of each task:
 ### Task 2 Using Claude + MCP + Scrapling: Network Interception
 
 <!-- Replace with your video link -->
-[![Task 2 Demo](https://img.youtube.com/vi/VIDEO_ID_2/maxresdefault.jpg)](https://youtu.be/_9LF863FA8E)
+[![Task 2 Demo](https://i9.ytimg.com/vi_webp/_9LF863FA8E/mq2.webp?sqp=CIzGuc0G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLC-fGHlPwLF3C9jLHU0O4DjNBUHjA)](https://youtu.be/_9LF863FA8E)
 
 **Description:** Shows the JavaScript interception technique to block Turnstile widget rendering and inject solved tokens.
 
@@ -75,7 +75,7 @@ The following videos demonstrate the implementation and execution of each task:
 **Target:** Cloudflare Turnstile CAPTCHA bypass  
 **Goal:** Achieve ≥60% success rate across 10 attempts  
 **Video:**   
-[![Task 1 Demo](https://img.youtube.com/vi/zq7joPt4mPc/maxresdefault.jpg)](https://youtu.be/zq7joPt4mPc)
+[![Task 1 Demo](https://i9.ytimg.com/vi_webp/hsUjIYrAYSM/mq2.webp?sqp=CIzGuc0G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGDQgYihyMA8=&rs=AOn4CLDy92Cm6ZXNA3wI2dHItviSMKmzMw)](https://youtu.be/hsUjIYrAYSM))
 
 
 ### Approach
@@ -130,7 +130,7 @@ python Task1.py
 **Target:** Cloudflare Turnstile CAPTCHA bypass via widget interception  
 **Goal:** Intercept Turnstile widget initialization and inject a solved token
 **Video:**   
-[![Task 3 Demo](https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg)](https://youtu.be/iXQB6R49Q6w)
+[![Task 2 Demo](https://i9.ytimg.com/vi_webp/iXQB6R49Q6w/mq2.webp?sqp=CJDNuc0G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGE4gZShLMA8=&rs=AOn4CLDDmXrGjR5ux-e91uIoaDiGPy_DYQ)](https://youtu.be/iXQB6R49Q6w)
 
 
 
