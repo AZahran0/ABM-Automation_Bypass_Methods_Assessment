@@ -45,7 +45,7 @@ The following videos demonstrate the implementation and execution of each task:
 ### Task 1 Using Claude + MCP + Scrapling: Automation - Stealth Assessment
 
 <!-- Replace with your video link -->
-[![Task 1 Demo With claude](https://img.youtube.com/vi/VIDEO_ID_1/maxresdefault.jpg)](https://youtu.be/zq7joPt4mPc)
+[![Task 1 Demo](https://img.youtube.com/vi/zq7joPt4mPc/maxresdefault.jpg)](https://youtu.be/zq7joPt4mPc)
 
 **Description:** Demonstrates the hybrid Scrapling + Playwright approach for bypassing Cloudflare Turnstile with stealth capabilities.
 
@@ -76,10 +76,6 @@ The following videos demonstrate the implementation and execution of each task:
 **Goal:** Achieve ≥60% success rate across 10 attempts  
 **Video:**   
 [![Task 1 Demo](https://img.youtube.com/vi/zq7joPt4mPc/maxresdefault.jpg)](https://youtu.be/zq7joPt4mPc)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zq7joPt4mPc?si=r2pQ4iUwGodyGZM6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-If the embed doesn’t render in your Markdown viewer, use: `https://youtu.be/zq7joPt4mPc`
 
 
 ### Approach
