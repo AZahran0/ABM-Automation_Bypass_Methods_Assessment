@@ -12,11 +12,71 @@ The project consists of three distinct tasks, each focusing on a different techn
 
 ---
 
+## Development Approach: Claude + Scrapling + MCP
+
+This project was developed using **Claude AI** (Anthropic's AI assistant) in combination with **Scrapling** (stealth browser automation library) and **MCP (Model Context Protocol)** for enhanced development workflow.
+
+### How It Works
+
+**Claude AI** served as the primary development assistant, providing:
+- Code generation and refactoring
+- Problem-solving and debugging
+- Architecture design and implementation guidance
+- Documentation writing
+
+**Scrapling** provided:
+- Advanced stealth browser automation capabilities
+- Cloudflare Turnstile solving (`solve_cloudflare=True`)
+- Browser fingerprinting evasion at the C++ level
+- Thread-safe execution patterns
+
+**MCP (Model Context Protocol)** enabled:
+- Enhanced context awareness for Claude
+- Better understanding of project structure and dependencies
+- Seamless integration between development tools and AI assistance
+- Improved code generation with project-specific context
+
+---
+
+## Video Demonstrations
+
+The following videos demonstrate the implementation and execution of each task:
+
+### Task 1 Using Claude + MCP + Scrapling: Automation - Stealth Assessment
+
+<!-- Replace with your video link -->
+[![Task 1 Demo With claude](https://img.youtube.com/vi/VIDEO_ID_1/maxresdefault.jpg)](https://youtu.be/zq7joPt4mPc)
+
+**Description:** Demonstrates the hybrid Scrapling + Playwright approach for bypassing Cloudflare Turnstile with stealth capabilities.
+
+---
+
+### Task 2 Using Claude + MCP + Scrapling: Network Interception
+
+<!-- Replace with your video link -->
+[![Task 2 Demo](https://img.youtube.com/vi/VIDEO_ID_2/maxresdefault.jpg)](https://youtu.be/_9LF863FA8E)
+
+**Description:** Shows the JavaScript interception technique to block Turnstile widget rendering and inject solved tokens.
+
+---
+
+### Task 3 Using Claude + MCP + Scrapling: DOM Scraping Assessment
+
+<!-- Replace with your video link -->
+[![Task 3 Demo](https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_3)
+
+**Description:** Demonstrates Selenium-based DOM scraping to extract CAPTCHA images and text instructions.
+
+---
+
 ## Task 1: Automation - Stealth Assessment
 
 **File:** `Task1.py`  
 **Target:** Cloudflare Turnstile CAPTCHA bypass  
-**Goal:** Achieve ≥60% success rate across 10 attempts
+**Goal:** Achieve ≥60% success rate across 10 attempts  
+**Video:**   
+[![Task 3 Demo](https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg)](https://youtu.be/hsUjIYrAYSM)
+
 
 ### Approach
 
@@ -69,6 +129,10 @@ python Task1.py
 **File:** `Task2.py`  
 **Target:** Cloudflare Turnstile CAPTCHA bypass via widget interception  
 **Goal:** Intercept Turnstile widget initialization and inject a solved token
+**Video:**   
+[![Task 3 Demo](https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg)](https://youtu.be/iXQB6R49Q6w)
+
+
 
 ### Approach
 
@@ -128,7 +192,11 @@ python Task2.py
 
 **File:** `Task3.py`  
 **Target:** BLS Spain CAPTCHA page scraping  
-**Goal:** Extract all images, visible grid images, and text instructions from CAPTCHA page
+**Goal:** Extract all images, visible grid images, and text instructions from CAPTCHA page  
+**Video:**   
+[![Task 3 Demo](https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_3)
+
+
 
 ### Approach
 
