@@ -58,7 +58,7 @@ def build_driver(headless: bool = True) -> webdriver.Chrome:
 
 # ── Image scraping ────────────────────────────────────────────────────────────
 EXTRACT_IMAGES_JS = """
-(function() {
+return (function() {
     try {
         const allImgs = document.querySelectorAll('.captcha-img');
         const results = [];
@@ -132,7 +132,7 @@ def scrape_images(driver):
         # Try a simpler version
         print("  → Trying simpler extraction...")
         images = driver.execute_script("""
-            return Array.from(document.querySelectorAll('.captcha-img')).map((img, idx) => ({
+           return Array.from(document.querySelectorAll('.captcha-img')).map((img, idx) => ({
                 index: idx,
                 base64: img.src || '',
                 width: img.naturalWidth || img.width || 0,
@@ -142,7 +142,6 @@ def scrape_images(driver):
                 posLeft: Math.round(img.getBoundingClientRect().left)
             }));
         """)
-    
     # Check if JavaScript returned None or empty result
     if images is None:
         raise RuntimeError("Failed to extract images. JavaScript returned None. Check if page loaded correctly.")
@@ -199,8 +198,81 @@ def scrape_images(driver):
 
 
 # ── Text scraping ─────────────────────────────────────────────────────────────
+# EXTRACT_TEXT_JS = """
+# return (() => {
+#     // ── Active box-label (z-index based) ─────────────────────────────────────
+#     let activeLabel = null;
+#     let highestZ    = -Infinity;
+#     const boxLabelTexts = new Set();
+
+#     document.querySelectorAll('.box-label').forEach(el => {
+#         const z = parseInt(window.getComputedStyle(el).zIndex) || 0;
+#         boxLabelTexts.add(el.textContent.trim());
+#         if (z > highestZ) {
+#             highestZ    = z;
+#             activeLabel = el.textContent.trim();
+#         }
+#     });
+
+#     // ── All text + visible text ───────────────────────────────────────────────
+#     const walker      = document.createTreeWalker(
+#         document.body, NodeFilter.SHOW_TEXT, null, false
+#     );
+#     const allText     = [];
+#     const visibleText = [];
+#     let node;
+
+#     while ((node = walker.nextNode())) {
+#         const text = node.textContent.trim();
+#         if (!text || text.length < 2) continue;
+
+#         const parent  = node.parentElement;
+#         const style   = window.getComputedStyle(parent);
+#         const rect    = parent.getBoundingClientRect();
+
+#         // Skip box-label texts — handled by z-index logic
+#         if (boxLabelTexts.has(text)) continue;
+
+#         const visible = style.display    !== 'none'
+#                      && style.visibility !== 'hidden'
+#                      && style.opacity    !== '0'
+#                      && rect.width        > 0
+#                      && rect.height       > 0
+#                      && rect.top          < window.innerHeight
+#                      && rect.bottom       > 0;
+
+#         allText.push({ text, visible });
+
+#         // ← only non-box-label visible text goes here
+#         if (visible) visibleText.push(text);
+#     }
+
+#     // ── Inject activeLabel into both lists ────────────────────────────────────
+#     if (activeLabel) {
+#         allText.unshift({ text: activeLabel, visible: true });   // all text ✓
+#         visibleText.unshift(activeLabel);                         // visible only ✓
+#     }
+
+#     return { allText, visibleText, activeLabel };
+# })();
+# """
+
 EXTRACT_TEXT_JS = """
-() => {
+return (() => {
+
+    // ── Active box-label (z-index based) ─────────────────────────────────────
+    let activeLabel = null;
+    let highestZ    = -Infinity;
+    const boxLabelTexts = new Set();
+
+    document.querySelectorAll('.box-label').forEach(el => {
+        const z = parseInt(window.getComputedStyle(el).zIndex) || 0;
+        boxLabelTexts.add(el.textContent.trim());
+        if (z > highestZ) {
+            highestZ    = z;
+            activeLabel = el.textContent.trim();
+        }
+    });
     const walker = document.createTreeWalker(
         document.body, NodeFilter.SHOW_TEXT, null, false
     );
@@ -224,30 +296,32 @@ EXTRACT_TEXT_JS = """
         if (visible) visibleText.push(text);
     }
 
-    return { allText, visibleText };
-}
+    return { allText, visibleText, activeLabel};
+})();
 """
 
 
 def scrape_text(driver):
     result = driver.execute_script(EXTRACT_TEXT_JS)
+    # print(result)
 
     all_texts     = [t["text"] for t in result["allText"]]
-    visible_texts = result["visibleText"]
+    # visible_texts = result["visibleText"]
+    active_instruction   = result['activeLabel']
 
     # The active instruction is the one that looks like
     # "Please select all boxes with number NNN" and whose parent is visible.
-    active_instruction = next(
-        (t for t in visible_texts if t.startswith("Please select all boxes")),
-        None,
-    )
+    # active_instruction = next(
+    #     (t for t in visible_texts if t.startswith("Please select all boxes")),
+    #     None,
+    # )
     print(f"  → Active CAPTCHA instruction : {active_instruction}")
-    print(f"  → Visible text items         : {len(visible_texts)}")
+    # print(f"  → Visible text items         : {len(visible_texts)}")
     print(f"  → Total text items (all)     : {len(all_texts)}")
 
     return {
         "active_instruction":          active_instruction,
-        "all_visible_text":            visible_texts,
+        # "all_visible_text":            visible_texts,
         "all_text_including_hidden":   all_texts,
         "note": (
             "active_instruction is the CAPTCHA prompt currently shown to the user. "
@@ -324,6 +398,8 @@ def main():
         print("\n✅  Done! All files saved successfully.")
 
     finally:
+        print("Window will close in 5 Seconds")
+        time.sleep(5.0) 
         driver.quit()
 
 
